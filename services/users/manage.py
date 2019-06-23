@@ -12,6 +12,13 @@ from project.api.models import User  # new
 app = create_app()  # new
 cli = FlaskGroup(create_app=create_app)  # new
 
+@cli.command('seed_db')
+def seed_db():
+    """Seeds the database."""
+    db.session.add(User(username='nitin', email="nitin.chandra  @gmail.com"))
+    db.session.add(User(username='sushant', email="suahant@mherman.org"))
+    db.session.commit()
+
 
 @cli.command('recreate_db')
 def recreate_db():
